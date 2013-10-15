@@ -8,7 +8,7 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 
 current, prev, sum = 1, 1, 0
 while current < 4000000
-  sum += current if current % 2 == 0
+  sum += current if current.even? 
   prev, current = current, prev + current
 end 
 puts sum
