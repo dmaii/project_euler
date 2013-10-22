@@ -45,11 +45,10 @@ str = '73167176531330624919225119674426574742355349194934
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450'.gsub("\n", '')
 
-greatest = 0
-(0..995).each do |i|
+greatest = (0..995).inject(0) do |greatest, i|
   product = (1..4).inject(str[i].to_i) do |product, ii|
     product *= (str[i+ii].to_i)
   end 
-  greatest = product if product > greatest
+  product > greatest ? product : greatest
 end 
 puts greatest
