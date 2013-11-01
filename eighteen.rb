@@ -48,7 +48,6 @@ triangle =
   (0...triangle[y].size).each do |x|
     triangle[y][x] += [triangle[y+1][x], triangle[y+1][x+1]].max
   end 
-  puts triangle[y].to_s
 end 
 
 puts triangle[0][0]
