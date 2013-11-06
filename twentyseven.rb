@@ -19,17 +19,27 @@ Find the product of the coefficients, a and b, for the quadratic expression that
 
 require 'prime'
 
-def consecutive_primes(a, b)
-  result = 3
-  n = 0
-  while result.prime?
-    result = n ** 2 + a * n + b
-    n += 1        
-  end 
-  n
+def quad(a, b, n)
+  n ** 2 + a * n + b
 end 
 
-(1...1000000).each do |i|
-  puts i
-  consecutive_primes(i, i)
+def consec_primes(a, b)
+  n = 0
+  while (result = quad(a, b, n)).prime?
+    n += 1
+  end 
+  n 
 end 
+
+greatest = answer = 0
+(-1000...1000).each do |i|
+  (2...1000).each do |ii|
+    consec = consec_primes(i, ii)  
+    if consec > greatest
+      greatest = consec 
+      answer = i * ii
+    end 
+  end 
+end 
+
+puts answer
