@@ -17,11 +17,10 @@ Find the value of d < 1000 for which 1/d contains the longest recurring cycle in
 
 require 'prime'
 
-def rep_digits(num)
-  prime_factors = num.prime_division
-  not_2_or_5 = prime_factors.select { |i| i[0] != 2 && i[0] != 5 }
-  nines = '9'
+def cycle_length(num)
+  not_2_or_5 = num.prime_division.select { |i| i[0] != 2 && i[0] != 5 }
   if not_2_or_5.size > 0
+    nines = '9'
     m = not_2_or_5.inject(1) { |s, i| s *= i[0]**i[1] }
     nines << '9' until nines.to_i % m == 0
     nines.size
@@ -30,4 +29,4 @@ def rep_digits(num)
   end 
 end 
 
-puts (1..1000).inject(0) { |greatest, i| rep_digits(i) > greatest ? i : greatest }
+puts (1..1000).inject(0) { |g, i| cycle_length(i) > g ? i : g }
